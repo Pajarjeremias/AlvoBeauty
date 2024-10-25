@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Palvelut lista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+    <style>
+        body{
+            background-color: beige;
+             }
+
+        .otsikko1 h3 {
+            margin: 0;
+        }
+        .otsikko2 {
+            text-align: center;
+
+        }
+        .otsikko2 h3 {
+            text-align: left;
+        }
+        .uloskirjautuminen {
+            position: absolute;
+            right: 20px;
+            top:20px;
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="otsikko1">
+            <a href="/alvobeauty" class="btn btn-dark">Takaisin etusivulle</a>
+            <h3>Tervetuloa <span sec:authentication="name"></span>!</h3>
+        </div>
+
+        <div class="uloskirjautuminen">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Kirjaudu ulos" class="btn btn-dark"/>
+            </form>
+        </div>
+    
+
+	<div class="otsikko2">
+
+    <h1>Lista palveluista</h1>
+
+	<h3>Alvo Beautyn palvelu tarjonta:</h3>
+
+    <table class="table table-striped">
+		<tr>
+            <th>Hinta</th>
+		    <th>Nimi</th>
+            <th>Kuvaus</th>
+            <th>Palvelun tuottaja</th>
+            <th sec:authorize="hasRole('toimitusjohtaja')">Toimitusjohtajan</th>
+            <th sec:authorize="hasRole('toimitusjohtaja')">toiminnot</th>
+        </tr>  
+    	<tr th:each = "palvelu : ${palvelut}">
+            <td th:text="${palvelu.hinta}"></td>
+    		<td th:text="${palvelu.nimi}"></td>
+            <td th:text="${palvelu.kuvaus}"></td> 
+            <td th:text="${palvelu.tyontekija?.nimi}"></td>
+            <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/poistapalvelu/{palvId}(palvId=${palvelu.palvId})}" class="btn btn-xs btn-danger ">Poista </a></td>
+		    <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/editoipalvelu/{palvId}(palvId=${palvelu.palvId})}"class="btn btn-xs btn-info ">Muunna </a></td>
+    	</tr>
+     </table>   
+     <div sec:authorize="hasRole('toimitusjohtaja')">	
+     <a th:href="@{/lisaaPalvelu}" class="btn btn-primary">Lisää uusi palvelu</a>
+  </div> 
+  <p> </p>
+   
+</div>
+ </div>       
+</body>
+</html>

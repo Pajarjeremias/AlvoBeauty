@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Palvelun lisääminen</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container mt-4">
+<h1>Tervetuloa</h1>
+<h3>lisäämään palveluita</h3>
+<form th:object="${palvelu}" th:action="@{/tallennapalvelu}" method="post">
+<div class="form-group">
+    <label for="hinta">Hinta</label>
+    <input type="text" th:field="*{hinta}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="nimi">Nimi</label>
+    <input type="text" th:field="*{nimi}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="kuvaus">Kuvaus</label>
+    <input type="text" th:field="*{kuvaus}" class="form-control" />
+</div>
+
+<div>
+    <select th:field="*{tyontekija}">
+        <option value="" disabled selected>Valitse työntekijä</option>
+        <option th:each="tyontekija : ${tyontekijat}"
+                th:value="${tyontekija.tTId}" 
+                th:text="${tyontekija.nimi}">
+        </option>
+    </select>
+</div>
+
+<input type="submit" value="Tallenna palvelu" class="btn btn-primary"></input>
+</form>
+</div>
+</body>
+</html>

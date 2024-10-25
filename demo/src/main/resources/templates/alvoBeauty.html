@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alvo Beauty</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <style>
+
+        .ylataso{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        .tervetuloa {
+            flex: 1;
+            text-align: left;
+        }
+        .header {
+            flex: 1;
+            text-align: center;
+            font-size: 2em;
+        }
+        .uloskirjautuminen {
+            flex: 1;
+            text-align: right;
+        }
+
+  
+        body{
+            background-color: beige;
+            padding-top: 120px;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ylataso">
+             <div class="tervetuloa">
+            <h3>Tervetuloa <span sec:authentication="name"></span>!</h3>
+        </div>
+        <div class="header">  
+                <h1>Alvo Beauty</h1>
+        </div>
+        <div class="uloskirjautuminen">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Uloskirjautuminen" class="btn btn-dark"/>
+            </form>
+        </div>
+    </div>
+        <div class="palvelu">
+            <div class="palvelupoyta">
+                <a href="/palvelutLista" class="btn btn-secondary">Palveluihimme</a>
+                    <a href="/tyontekijaLista" class="btn btn-secondary">Työntekijöihimme</a>
+                    <h3>Palvelumme:</h3>
+                <table class="table table-striped">
+                    
+                    <tr>
+                        <th>Palvelun nimi</th>
+                        <th>Hinta</th>
+                        <th>Kuvaus</th>
+                        <th>Palvelun tuottaja</th>
+                        <!--<th sec:authorize="hasRole('toimitusjohtaja')">Toimitusjohtajan</th>
+                        <th sec:authorize="hasRole('toimitusjohtaja')">toiminnot</th>-->
+
+                    </tr>
+                    <tr th:each="palvelu : ${palvelut}">
+                        <td th:text="${palvelu.nimi}"></td>
+                        <td th:text="${palvelu.hinta}"></td>
+                        <td th:text="${palvelu.kuvaus}"></td>
+                        <td th:text="${palvelu.tyontekija?.nimi}"></td>
+                       <!-- <td sec:authorize="hasRole('toimitusjohtaja')">
+                        <a th:href="@{/lisaaPalvelu}" class="btn btn-xs btn-warning ">Lisää palvelu </a></td>
+                        <td sec:authorize="hasRole('toimitusjohtaja')">
+                            <a th:href="@{/lisaaTyontekija}" class="btn btn-xs btn-warning">Lisää uusi työntekijä</a></td>-->
+
+                    </tr>
+                </table>
+            </div>
+
+            <div sec:authorize="hasRole('toimitusjohtaja')" class="toimitusjohtajantoiminnot">
+                <h3>Toimitusjohtajan toiminnot:</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>palvelun lisääminen</th>
+                        <th>Työntekijän lisääminen</th>
+                        
+                    </tr>
+                        <td sec:authorize="hasRole('toimitusjohtaja')">
+                        <a th:href="@{/lisaaPalvelu}" class="btn btn-xs btn-warning ">Lisää palvelu </a></td>
+                        <td sec:authorize="hasRole('toimitusjohtaja')">
+                        <a th:href="@{/lisaaTyontekija}" class="btn btn-xs btn-warning ">Lisää työntekijä </a></td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+
+        
+        </td>
+        
+    </div>
+</body>
+</html>

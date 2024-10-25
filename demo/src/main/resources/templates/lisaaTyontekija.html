@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tyontekijän lisääminen</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container mt-4">
+<h1>Tervetuloa</h1>
+<h3>lisäämään työntekijöitä</h3>
+<form th:object="${tyontekija}" th:action="@{/tallennatyontekija}" method="post">
+<div class="form-group">
+    <label for="nimi">Nimi</label>
+    <input type="text" th:field="*{nimi}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="role">Rooli</label>
+    <input type="text" th:field="*{role}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="puhnumero">Puhelin numero</label>
+    <input type="text" th:field="*{puhnumero}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="osoite">Osoite</label>
+    <input type="text" th:field="*{osoite}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="tyosuhdealku">Tyosuhteen aloitus pvm</label>
+    <input type="text" th:field="*{tyosuhdealku}" class="form-control" />
+</div>
+
+<div class="form-group">
+    <label for="lisatiedot">Lisätiedot</label>
+    <input type="text" th:field="*{lisatiedot}" class="form-control" />
+</div>
+
+<input type="submit" value="tallenna työntekijä" class="btn btn-primary"></input>
+</form>
+</div>
+</body>
+</html>

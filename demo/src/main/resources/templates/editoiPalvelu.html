@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>editoi palvelu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<style>
+	.body {
+		background-color: bisque;
+	}
+	.mt-4{
+		flex: 1;
+		align-items: center;
+	}
+
+</style>
+</head>
+<body>
+	
+	<div class="container mt-4">
+		<h2>Palveluiden editointi</h2>
+	<form th:object="${editoiPalvelu}" th:action="@{/tallennaeditoitupalvelu}" action="#" method="post">
+		  	<input type="hidden" th:field="*{palvId}" />
+		  	<div>
+		  	    <label>Hinta</label>
+			    <input type="text" th:field="*{hinta}" />
+			</div>
+
+			<div>
+		  	    <label>Nimi</label>
+		  	    <input type="text" th:field="*{nimi}" />
+			</div>
+
+            <div>
+                <label>Kuvaus</label>
+                <input type="text" th:field="*{kuvaus}" />
+            </div>
+			<div>
+                <label>Työntekijä</label>
+                <select th:field="*{tyontekija}">
+                    <option value="" disabled selected>Valitse työntekijä</option>
+                    <option th:each="tyontekija : ${tyontekijat}"
+                            th:value="${tyontekija.tTId}" 
+                            th:text="${tyontekija.nimi}">
+                    </option>
+                </select>
+            </div>
+			
+		<input type="submit" value="Tallenna päivitys" />
+		</form>
+	</div>
+</body>
+</html>

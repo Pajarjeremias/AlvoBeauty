@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>editoi työntekijä</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+</head>
+<body>
+	
+	<div class="container mt-4">
+		<h2>Työntekijöiden editointi</h2>
+	<form th:object="${editoiTyontekija}" th:action="@{/tallennaeditoitutyontekija}" action="#" method="post">
+		  	<input type="hidden" th:field="*{tTId}" />
+             
+		  	<div>
+		  	    <label>Nimi</label>
+			    <input type="text" th:field="*{nimi}" />
+			</div>
+
+			<div>
+		  	    <label>Rooli</label>
+		  	    <input type="text" th:field="*{role}" />
+			</div>
+
+            <div>
+                <label>Puhelin numero</label>
+                <input type="text" th:field="*{puhnumero}" />
+            </div>
+
+            <div>
+                <label>Sähköposti</label>
+                <input type="text" th:field="*{email}" />
+            </div>
+
+            <div>
+                <label>Osoite</label>
+                <input type="text" th:field="*{osoite}" />
+            </div>
+
+            <div>
+                <label>Työsuhteen alku</label>
+                <input type="text" th:field="*{tyosuhdealku}" />
+            </div>
+
+            <div>
+                <label>Lisätiedot</label>
+                <input type="text" th:field="*{lisatiedot}" />
+            </div>
+			
+		<input type="submit" value="Tallenna päivitys"></input>
+		</form>
+	</div>
+</body>
+</html>
