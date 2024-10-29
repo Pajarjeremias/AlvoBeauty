@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -26,15 +28,20 @@ public class Tyontekijat {
     @JoinColumn(name="aBId")
     private AlvoBeauty alvoBeauty;
 
+    @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
+    //@Size(min = 5, max = 200)
     @Column(name= "nimi", nullable=false)
     private String nimi;
 
+    @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
     @Column(name= "role", nullable=false)
     private String role;
 
+    @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
     @Column(name= "puhnumero", nullable=false)
     private String puhnumero;
 
+    @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
     @Column(name= "email", nullable=false)
     private String email;
 
@@ -44,6 +51,7 @@ public class Tyontekijat {
     @Column(name= "tyosuhdealku", nullable=false)
     private int tyosuhdealku;
 
+    @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
     @Column(name= "lisatiedot", nullable=false)
     private String lisatiedot;
 

@@ -16,12 +16,12 @@ public class KayttajaController {
     @Autowired
     private KayttajaRepositorio repositorio;
 
-   /*  @RequestMapping(value="ilmoittautuminen", method = RequestMethod.POST)
+   @RequestMapping(value="/ilmoittautuminen")
     public String lisaaKayttaja(Model model){
         model.addAttribute("ilmoittautumislomake", new IlmoittautumisLomake());
         return "ilmoittautuminen";
-    }*/
-    @RequestMapping(value="ilmoittautuminen", method = RequestMethod.POST)
+    }
+    @RequestMapping(value="/tallennailmoittautuminen", method = RequestMethod.POST)
     public String tallennaKayttaja(@Valid @ModelAttribute("ilmoittautumislomake")IlmoittautumisLomake lomake, 
     BindingResult tulokset, Model model){
         if (tulokset.hasErrors()){

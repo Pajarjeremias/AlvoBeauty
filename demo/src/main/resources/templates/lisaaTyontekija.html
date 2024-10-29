@@ -13,21 +13,25 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="form-group">
     <label for="nimi">Nimi</label>
     <input type="text" th:field="*{nimi}" class="form-control" />
+   <!----> <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="role">Rooli</label>
     <input type="text" th:field="*{role}" class="form-control" />
+   <!----> <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="puhnumero">Puhelin numero</label>
     <input type="text" th:field="*{puhnumero}" class="form-control" />
+   <!----> <div th:if="${#fields.hasErrors('puhnumero')}" th:errors="*{puhnumero}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="email">Email</label>
     <input type="text" th:field="*{email}" class="form-control" />
+   <!----> <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virhe</div>
 </div>
 
 <div class="form-group">
@@ -43,6 +47,7 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="form-group">
     <label for="lisatiedot">Lisätiedot</label>
     <input type="text" th:field="*{lisatiedot}" class="form-control" />
+    <!----><div th:if="${#fields.hasErrors('lisatiedot')}" th:errors="*{lisatiedot}">Virhe</div>
 </div>
 
 <input type="submit" value="tallenna työntekijä" class="btn btn-primary"></input>

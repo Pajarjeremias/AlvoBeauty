@@ -1,6 +1,5 @@
 package projekti.demo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +18,6 @@ import projekti.demo.domain.Kayttaja;
 import projekti.demo.domain.KayttajaRepositorio;
 @SpringBootApplication
 public class DemoApplication {
-	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -64,7 +62,7 @@ KayttajaRepositorio kaytRepo ){
 		Kayttaja kayttaja2 = new Kayttaja("raquel", "$2a$10$SUeD/lzpiOnVRvOUME/Kv.KO.PNfgkjUa6lnBBcnNJxlJgNPPBnbK", "Työntekijä" );
 		Kayttaja kayttaja3 = new Kayttaja("milla", "$2a$10$v73zm2h1ToiK4oamxyV7ZufJquN7zV8c3VU85ouyUb1TQAXhZz3My", "Työntekijä");
 		Kayttaja kayttaja4 = new Kayttaja("jack", "$2a$10$ftVbxn.dHHV6LWxOFPyXl.J5XWZCwr7gBvTVnIgXrR1Mfi1Lalb3W", "toimitusjohtaja");
-		Kayttaja kayttaja5 = new Kayttaja("admin", "$2a$10$NstqhK2hJwVkOmYrNgzaxu6823b9ea6cFG5BiD/d9CTt.Pwp1WZAm", "ADMIN" );
+		Kayttaja kayttaja5 = new Kayttaja("admin", "$2a$10$NstqhK2hJwVkOmYrNgzaxu6823b9ea6cFG5BiD/d9CTt.Pwp1WZAm", "toimitusjohtaja" );
 		Kayttaja kayttaja6 = new Kayttaja("user", "$2a$10$ByD.6qqYUBkHgAouMjoSl.SChORIAeDw4vunHHbJbr7d/ZY6FGHAe", "user");
 		kaytRepo.save(kayttaja1);
 		kaytRepo.save(kayttaja2);

@@ -2,6 +2,7 @@ package projekti.demo.web;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import projekti.demo.domain.AlvoBeauty;
 import projekti.demo.domain.AlvoBeautyRepositorio;
 import projekti.demo.domain.Palvelut;
 import projekti.demo.domain.PalvelutRepositorio;
@@ -55,34 +55,51 @@ public class RESTController {
     }
    
 
-    @PostMapping("/uusipalvelu")
+    @PostMapping("/uusipalvelut")
     Palvelut newPalvelut(@RequestBody Palvelut uusiPalvelu) {
         return palvrepo.save(uusiPalvelu);
     }
 
-    @PostMapping("/uusityontekija")
+    @PostMapping("/uusityontekijat")
     Tyontekijat newTyontekijat(@RequestBody Tyontekijat uusiTyontekijat){
         return tyorepo.save(uusiTyontekijat);
     }
 
-    @PostMapping("/uusikayttaja")
+    @PostMapping("/uusikayttajat")
     Kayttaja newKayttaja(@RequestBody Kayttaja uusiKayttaja){
         return kaytrepo.save(uusiKayttaja);
     }
 
-    @PutMapping("/uusipalvelu/{palvId}")
+    @PutMapping("/muokkaapalvelut/{palvId}")
     Palvelut editPalvelut(@RequestBody Palvelut editioituPalvelu, @PathVariable Long palvId){
     editioituPalvelu.setPalvId(palvId);
     return palvrepo.save(editioituPalvelu);
     }
-    @PutMapping("/uusityontekija/{tTId}")
+    @PutMapping("/muokkaatyontekijat/{tTId}")
     Tyontekijat editTyontekijat(@RequestBody Tyontekijat editioituTyontekija, @PathVariable Long tTId){
     editioituTyontekija.settTId(tTId);
     return tyorepo.save(editioituTyontekija);
     }
-    @PutMapping("/uusikayttaja/{kaytId}")
+    @PutMapping("/muokkaakayttajat/{kaytId}")
     Kayttaja editKayttaja(@RequestBody Kayttaja editioituKayttaja, @PathVariable Long kaytId){
     editioituKayttaja.setKaytId(kaytId);
     return kaytrepo.save(editioituKayttaja);
     }
+
+    @DeleteMapping("/poistapalvelut/{palvId}")
+    public Iterable<Palvelut> poistaPalvelu(@PathVariable Long palvId) {
+        palvrepo.deleteById(palvId);
+        return palvrepo.findAll();
+    }
+    @DeleteMapping("/poistatyontekijat/{tTId}")
+    public Iterable<Tyontekijat> poistaTyontekija(@PathVariable Long tTId) {
+        tyorepo.deleteById(tTId);
+        return tyorepo.findAll();
+    }
+    @DeleteMapping("/poistakayttaja/{kaytId}")
+    public Iterable<Kayttaja> poistaKayttaja(@PathVariable Long kaytId) {
+        kaytrepo.deleteById(kaytId);
+        return kaytrepo.findAll();
+    }
+
 }

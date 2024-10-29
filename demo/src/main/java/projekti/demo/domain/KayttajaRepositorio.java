@@ -1,7 +1,5 @@
 package projekti.demo.domain;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
 public interface KayttajaRepositorio extends CrudRepository<Kayttaja, Long> {

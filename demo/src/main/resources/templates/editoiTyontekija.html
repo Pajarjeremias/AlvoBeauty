@@ -16,21 +16,25 @@
 		  	<div>
 		  	    <label>Nimi</label>
 			    <input type="text" th:field="*{nimi}" />
+                <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 			</div>
 
 			<div>
 		  	    <label>Rooli</label>
 		  	    <input type="text" th:field="*{role}" />
+                  <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Virhe</div>
 			</div>
 
             <div>
                 <label>Puhelin numero</label>
                 <input type="text" th:field="*{puhnumero}" />
+                <div th:if="${#fields.hasErrors('puhnumero')}" th:errors="*{puhnumero}">Virhe</div>
             </div>
 
             <div>
                 <label>Sähköposti</label>
                 <input type="text" th:field="*{email}" />
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virhe</div>
             </div>
 
             <div>
@@ -46,6 +50,7 @@
             <div>
                 <label>Lisätiedot</label>
                 <input type="text" th:field="*{lisatiedot}" />
+                <div th:if="${#fields.hasErrors('lisatiedot')}" th:errors="*{lisatiedot}">Virhe</div>
             </div>
 			
 		<input type="submit" value="Tallenna päivitys"></input>

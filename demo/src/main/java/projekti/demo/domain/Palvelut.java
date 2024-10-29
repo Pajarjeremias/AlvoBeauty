@@ -2,6 +2,8 @@ package projekti.demo.domain;
 
 import java.math.BigDecimal;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,12 +22,15 @@ public class Palvelut {
     @JoinColumn(name="tTId")
     private Tyontekijat tyontekija;
     
+    @NotNull(message = "Tämä kenttä ei saa olla tyhjä ja muista käyttää pistettä pilkun sijaan.")
     @Column(name= "hinta", nullable=true)
    private BigDecimal hinta;
    
+   @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
    @Column(name= "nimi", nullable=false)
    private String nimi;
    
+   @NotEmpty(message = "Tämä kenttä ei saa olla tyhjä.")
    @Column(name= "kuvaus", nullable=true)
    private String kuvaus;
 

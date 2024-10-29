@@ -13,16 +13,19 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="form-group">
     <label for="hinta">Hinta</label>
     <input type="text" th:field="*{hinta}" class="form-control" />
+   <!----> <div th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="nimi">Nimi</label>
     <input type="text" th:field="*{nimi}" class="form-control" />
+    <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="kuvaus">Kuvaus</label>
     <input type="text" th:field="*{kuvaus}" class="form-control" />
+    <div th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">Virhe</div>
 </div>
 
 <div>
