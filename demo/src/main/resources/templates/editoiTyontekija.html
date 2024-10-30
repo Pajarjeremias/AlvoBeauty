@@ -5,6 +5,54 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 
+    <style>
+        body {
+            background-color: beige;
+        }
+        .container {
+            margin: 20px;
+        }
+        .container h2{
+            margin: 20px;
+        }
+        .container label{
+            display: inline-block;
+            width: 150px;
+        }
+        
+        
+        .nimi {
+            margin: 20px;
+    
+            
+        }
+        .rooli {
+            margin: 20px;
+            
+        }
+        .puh {
+            margin: 20px;
+            
+        }
+        .email {
+            margin: 20px;
+            
+        }
+        .osoite {
+            margin: 20px;
+            
+        }
+        .alku {
+            margin: 20px;
+            
+        }
+        .lisatiedot {
+            margin: 20px;
+            
+        }
+        
+    
+    </style>
 </head>
 <body>
 	
@@ -13,42 +61,42 @@
 	<form th:object="${editoiTyontekija}" th:action="@{/tallennaeditoitutyontekija}" action="#" method="post">
 		  	<input type="hidden" th:field="*{tTId}" />
              
-		  	<div>
-		  	    <label>Nimi</label>
+		  	<div class="nimi">
+		  	    <label>Nimi: </label>
 			    <input type="text" th:field="*{nimi}" />
                 <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 			</div>
 
-			<div>
-		  	    <label>Rooli</label>
+			<div class="rooli">
+		  	    <label>Rooli: </label>
 		  	    <input type="text" th:field="*{role}" />
                   <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Virhe</div>
 			</div>
 
-            <div>
-                <label>Puhelin numero</label>
+            <div class="puh">
+                <label>puh.numero: </label>
                 <input type="text" th:field="*{puhnumero}" />
                 <div th:if="${#fields.hasErrors('puhnumero')}" th:errors="*{puhnumero}">Virhe</div>
             </div>
 
-            <div>
-                <label>Sähköposti</label>
+            <div class="email">
+                <label>Sähköposti: </label>
                 <input type="text" th:field="*{email}" />
                 <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virhe</div>
             </div>
 
-            <div>
-                <label>Osoite</label>
+            <div class="osoite">
+                <label>Osoite: </label>
                 <input type="text" th:field="*{osoite}" />
             </div>
 
-            <div>
-                <label>Työsuhteen alku</label>
+            <div class="alku">
+                <label>Työsuhteen alku: </label>
                 <input type="text" th:field="*{tyosuhdealku}" />
             </div>
 
-            <div>
-                <label>Lisätiedot</label>
+            <div class="lisatiedot">
+                <label>Lisätiedot: </label>
                 <input type="text" th:field="*{lisatiedot}" />
                 <div th:if="${#fields.hasErrors('lisatiedot')}" th:errors="*{lisatiedot}">Virhe</div>
             </div>

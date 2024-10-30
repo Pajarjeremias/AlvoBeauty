@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -109,26 +110,27 @@ public class AlvoBeautyController {
     @PreAuthorize("hasRole('toimitusjohtaja')")
     public String editoiTyontekija(@PathVariable("tTId") Long tTId, Model model){
         model.addAttribute("editoiTyontekija", tyorepo.findById(tTId));
-        return "editoiTyontekija";
+        return "editoityontekija";
     }
     @GetMapping("/editoipalvelu/{palvId}")
     @PreAuthorize("hasRole('toimitusjohtaja')")
     public String editoiPalvelu(@PathVariable("palvId") Long palvId, Model model){
         model.addAttribute("editoiPalvelu", palvrepo.findById(palvId));
         model.addAttribute("tyontekijat", tyorepo.findAll());
-        return "editoiPalvelu";
+        return "editoipalvelu";
     }
 
-   /*  @PostMapping("/tallennaeditoitutyontekija")
+    /* @PostMapping("/tallennaeditoitutyontekija")
     public String tallennaEditoituTyontekija(Tyontekijat tyontekija){
         tyorepo.save(tyontekija);
         return "redirect:/tyontekijaLista";}*/
-    
+       
+
     @RequestMapping(value = "/tallennaeditoitutyontekija", method = RequestMethod.POST)
     public String tallennaEditoituTyontekija(@Valid @ModelAttribute("tyontekija")Tyontekijat tyontekija, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {
             model.addAttribute("tyontekija", tyontekija);
-            return "editoityontekija";
+            return "editoiTyontekija";
         }
         tyorepo.save(tyontekija);
         return "redirect:/tyontekijaLista";
@@ -139,8 +141,7 @@ public class AlvoBeautyController {
         palvrepo.save(palvelu);
         return "redirect:/palvelutLista";
     }
-
-
+    
     @PreAuthorize("hasRole('toimitusjohtaja')")
     @RequestMapping(value = "/poistatyontekija/{tTId}", method = RequestMethod.GET)
     

@@ -4,6 +4,11 @@ xmlns:th="http://www.thymeleaf.org">
 <title>Tyontekijän lisääminen</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<style>
+    body{
+        background-color: beige;
+    }
+</style>
 </head>
 <body>
     <div class="container mt-4">
@@ -13,25 +18,25 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="form-group">
     <label for="nimi">Nimi</label>
     <input type="text" th:field="*{nimi}" class="form-control" />
-   <!----> <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
+    <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="role">Rooli</label>
     <input type="text" th:field="*{role}" class="form-control" />
-   <!----> <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Virhe</div>
+    <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="puhnumero">Puhelin numero</label>
     <input type="text" th:field="*{puhnumero}" class="form-control" />
-   <!----> <div th:if="${#fields.hasErrors('puhnumero')}" th:errors="*{puhnumero}">Virhe</div>
+    <div th:if="${#fields.hasErrors('puhnumero')}" th:errors="*{puhnumero}">Virhe</div>
 </div>
 
 <div class="form-group">
     <label for="email">Email</label>
     <input type="text" th:field="*{email}" class="form-control" />
-   <!----> <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virhe</div>
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virhe</div>
 </div>
 
 <div class="form-group">

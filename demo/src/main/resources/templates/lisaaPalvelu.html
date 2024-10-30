@@ -4,6 +4,18 @@ xmlns:th="http://www.thymeleaf.org">
 <title>Palvelun lisääminen</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<style>
+    body{
+        background-color: beige;
+    }
+    .valinta {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .valinta select {
+        padding: 5px;
+    }
+</style>
 </head>
 <body>
     <div class="container mt-4">
@@ -28,7 +40,7 @@ xmlns:th="http://www.thymeleaf.org">
     <div th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">Virhe</div>
 </div>
 
-<div>
+<div class="valinta">
     <select th:field="*{tyontekija}">
         <option value="" disabled selected>Valitse työntekijä</option>
         <option th:each="tyontekija : ${tyontekijat}"

@@ -17,6 +17,10 @@ public class AlvoBeauty {
     @OneToMany(mappedBy="alvoBeauty", cascade = CascadeType.ALL)
     private List<Palvelut> palvelut;
 
+    @JsonIgnore
+    @OneToMany(mappedBy ="alvoBeauty", cascade = CascadeType.ALL)
+    private List<Tyontekijat> tyontekijat;
+
     public AlvoBeauty() {
         super();
     }
@@ -39,6 +43,14 @@ public class AlvoBeauty {
 
     public void setPalvelut(List<Palvelut> palvelut) {
         this.palvelut = palvelut;
+    }
+
+    public List<Tyontekijat> getTyontekijat() {
+        return tyontekijat;
+    }
+
+    public void setTyontekijat(List<Tyontekijat> tyontekijat) {
+        this.tyontekijat = tyontekijat;
     }
 }
 

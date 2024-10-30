@@ -66,8 +66,6 @@
                         <th>Hinta</th>
                         <th>Kuvaus</th>
                         <th>Palvelun tuottaja</th>
-                        <!--<th sec:authorize="hasRole('toimitusjohtaja')">Toimitusjohtajan</th>
-                        <th sec:authorize="hasRole('toimitusjohtaja')">toiminnot</th>-->
 
                     </tr>
                     <tr th:each="palvelu : ${palvelut}">
@@ -75,10 +73,6 @@
                         <td th:text="${palvelu.hinta}"></td>
                         <td th:text="${palvelu.kuvaus}"></td>
                         <td th:text="${palvelu.tyontekija?.nimi}"></td>
-                       <!-- <td sec:authorize="hasRole('toimitusjohtaja')">
-                        <a th:href="@{/lisaaPalvelu}" class="btn btn-xs btn-warning ">Lisää palvelu </a></td>
-                        <td sec:authorize="hasRole('toimitusjohtaja')">
-                            <a th:href="@{/lisaaTyontekija}" class="btn btn-xs btn-warning">Lisää uusi työntekijä</a></td>-->
 
                     </tr>
                 </table>

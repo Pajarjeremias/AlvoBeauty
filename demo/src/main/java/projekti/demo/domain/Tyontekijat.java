@@ -3,12 +3,9 @@ package projekti.demo.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-//import java.util.List;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+//import jakarta.validation.constraints.Size;
 
 
 @Entity

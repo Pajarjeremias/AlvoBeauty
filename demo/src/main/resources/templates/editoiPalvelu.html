@@ -5,13 +5,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 	<style>
-	.body {
-		background-color: bisque;
+	body {
+		background-color: beige;
 	}
-	.mt-4{
-		flex: 1;
-		align-items: center;
+	.container {
+		margin: 20px;
 	}
+	.container h2{
+		margin: 20px;
+		margin-bottom: 40px;
+	}
+	.container label {
+		display: inline-block;
+            width: 150px;
+	}
+	
+	.nimi {
+		margin: 20px;
+
+		
+	}
+	.hinta {
+		margin: 20px;
+		
+	}
+	.kuvaus {
+		margin: 20px;
+		
+	}
+	.tyontekija {
+		margin: 20px;
+		
+	}
+	
 
 </style>
 </head>
@@ -21,22 +47,23 @@
 		<h2>Palveluiden editointi</h2>
 	<form th:object="${editoiPalvelu}" th:action="@{/tallennaeditoitupalvelu}" action="#" method="post">
 		  	<input type="hidden" th:field="*{palvId}" />
-		  	<div>
-		  	    <label>Hinta</label>
+		  	<div class="hinta">
+		  	    <label>Hinta: </label>
 			    <input type="text" th:field="*{hinta}" />
+				<div th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}">Virhe</div>
 			</div>
-
-			<div>
-		  	    <label>Nimi</label>
+			<div class="nimi">
+		  	    <label>Nimi: </label>
 		  	    <input type="text" th:field="*{nimi}" />
+				 <div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Virhe</div>
 			</div>
-
-            <div>
-                <label>Kuvaus</label>
+			<div class="kuvaus">
+                <label>Kuvaus: </label>
                 <input type="text" th:field="*{kuvaus}" />
-            </div>
-			<div>
-                <label>Työntekijä</label>
+				<div th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">Virhe</div>
+			</div>
+			<div class="tyontekija">
+                <label>Työntekijä: </label>
                 <select th:field="*{tyontekija}">
                     <option value="" disabled selected>Valitse työntekijä</option>
                     <option th:each="tyontekija : ${tyontekijat}"
@@ -44,6 +71,7 @@
                             th:text="${tyontekija.nimi}">
                     </option>
                 </select>
+			</div>
             </div>
 			
 		<input type="submit" value="Tallenna päivitys" />
