@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.validation.Valid;
 import projekti.demo.domain.Tyontekijat;
 import projekti.demo.domain.Palvelut;
+
 @Controller
 public class AlvoBeautyController {
 
@@ -34,28 +35,29 @@ public class AlvoBeautyController {
     @Autowired
     private KayttajaRepositorio kaytrepo;
 
-    @RequestMapping(value= "/login")
+    @RequestMapping(value = "/login")
     public String login() {
         return "login";
     }
-    @RequestMapping(value= {"/", "/alvobeauty"})
+
+    @RequestMapping(value = { "/", "/alvobeauty" })
     public String alvoBeauty(Model model) {
         model.addAttribute("tyontekijat", tyorepo.findAll());
         model.addAttribute("palvelut", palvrepo.findAll());
         return "alvobeauty";
     }
+
     @RequestMapping("/palvelutLista")
     public String palvelutLista(Model model) {
-    model.addAttribute("palvelut", palvrepo.findAll());
-    return "palvelutLista";
+        model.addAttribute("palvelut", palvrepo.findAll());
+        return "palvelutLista";
     }
 
     @RequestMapping("/tyontekijaLista")
     public String tyontekijaLista(Model model) {
-    model.addAttribute("tyontekijat", tyorepo.findAll());
-    return "tyontekijaLista";
+        model.addAttribute("tyontekijat", tyorepo.findAll());
+        return "tyontekijaLista";
     }
-
 
     @GetMapping("/lisaaTyontekija")
     @PreAuthorize("hasRole('toimitusjohtaja')")
@@ -68,9 +70,10 @@ public class AlvoBeautyController {
     @PreAuthorize("hasRole('toimitusjohtaja')")
     public String lisaaPalvelu(Model model) {
         model.addAttribute("tyontekijat", tyorepo.findAll());
-         model.addAttribute("palvelu", new Palvelut());
+        model.addAttribute("palvelu", new Palvelut());
         return "lisaaPalvelu";
     }
+
     @GetMapping("/lisaakayttaja")
     @PreAuthorize("hasRole('toimitusjohtaja')")
     public String lisaaKayttaja(Model model) {
@@ -78,8 +81,9 @@ public class AlvoBeautyController {
         return "lisaaKayttaja";
     }
 
-   @RequestMapping( value = "/tallennatyontekija", method = RequestMethod.POST)
-    public String tallennaTyontekija(@Valid @ModelAttribute("tyontekija") Tyontekijat tyontekija, BindingResult bindingResult, Model model){
+    @RequestMapping(value = "/tallennatyontekija", method = RequestMethod.POST)
+    public String tallennaTyontekija(@Valid @ModelAttribute("tyontekija") Tyontekijat tyontekija,
+            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("tyontekija", tyontekija);
             return "/lisaaTyontekija";
@@ -88,9 +92,10 @@ public class AlvoBeautyController {
         tyorepo.save(tyontekija);
         return "redirect:/tyontekijaLista";
     }
-  
-    @RequestMapping(value ="/tallennapalvelu", method = RequestMethod.POST)
-        public String tallennaPalvelu(@Valid @ModelAttribute("palvelu") Palvelut palvelu, BindingResult bindingResult, Model model){
+
+    @RequestMapping(value = "/tallennapalvelu", method = RequestMethod.POST)
+    public String tallennaPalvelu(@Valid @ModelAttribute("palvelu") Palvelut palvelu, BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("palvelu", palvelu);
             model.addAttribute("tyontekijat", tyorepo.findAll());
@@ -100,51 +105,54 @@ public class AlvoBeautyController {
         palvrepo.save(palvelu);
         return "redirect:/palvelutLista";
     }
+
     @PostMapping("/tallennakayttaja")
-    public String tallennaKayttaja(@ModelAttribute Kayttaja kayttaja){
+    public String tallennaKayttaja(@ModelAttribute Kayttaja kayttaja) {
         kaytrepo.save(kayttaja);
         return "redirect:/kayttajaLista";
     }
 
     @GetMapping("/editoityontekija/{tTId}")
     @PreAuthorize("hasRole('toimitusjohtaja')")
-    public String editoiTyontekija(@PathVariable("tTId") Long tTId, Model model){
+    public String editoiTyontekija(@PathVariable("tTId") Long tTId, Model model) {
         model.addAttribute("editoiTyontekija", tyorepo.findById(tTId));
         return "editoityontekija";
     }
+
     @GetMapping("/editoipalvelu/{palvId}")
     @PreAuthorize("hasRole('toimitusjohtaja')")
-    public String editoiPalvelu(@PathVariable("palvId") Long palvId, Model model){
+    public String editoiPalvelu(@PathVariable("palvId") Long palvId, Model model) {
         model.addAttribute("editoiPalvelu", palvrepo.findById(palvId));
         model.addAttribute("tyontekijat", tyorepo.findAll());
         return "editoipalvelu";
     }
 
-    /* @PostMapping("/tallennaeditoitutyontekija")
-    public String tallennaEditoituTyontekija(Tyontekijat tyontekija){
-        tyorepo.save(tyontekija);
-        return "redirect:/tyontekijaLista";}*/
-       
-
     @RequestMapping(value = "/tallennaeditoitutyontekija", method = RequestMethod.POST)
-    public String tallennaEditoituTyontekija(@Valid @ModelAttribute("tyontekija")Tyontekijat tyontekija, BindingResult bindingResult, Model model){
+    public String tallennaEditoituTyontekija(@Valid @ModelAttribute("editoiTyontekija") Tyontekijat tyontekija,
+            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("tyontekija", tyontekija);
+            model.addAttribute("editoiTyontekija", tyontekija);
             return "editoiTyontekija";
         }
         tyorepo.save(tyontekija);
         return "redirect:/tyontekijaLista";
     }
 
-    @PostMapping("/tallennaeditoitupalvelu")
-    public String tallennaEditoituPalvelu(Palvelut palvelu){
+    @RequestMapping(value = "/tallennaeditoitupalvelu", method = RequestMethod.POST)
+    public String tallennaEditoituPalvelu(@Valid @ModelAttribute("editoiPalvelu") Palvelut palvelu,
+            BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("editoiPalvelu", palvelu);
+            model.addAttribute("tyontekijat", tyorepo.findAll());
+            return "editoiPalvelu";
+        }
         palvrepo.save(palvelu);
         return "redirect:/palvelutLista";
     }
-    
+
     @PreAuthorize("hasRole('toimitusjohtaja')")
     @RequestMapping(value = "/poistatyontekija/{tTId}", method = RequestMethod.GET)
-    
+
     public String poistaTyontekija(@PathVariable("tTId") Long tTId) {
         tyorepo.deleteById(tTId);
         return "redirect:/tyontekijaLista";
@@ -152,10 +160,10 @@ public class AlvoBeautyController {
 
     @PreAuthorize("hasRole('toimitusjohtaja')")
     @RequestMapping(value = "/poistapalvelu/{palvId}", method = RequestMethod.GET)
-    
+
     public String poistaPalvelu(@PathVariable("palvId") Long palvId) {
         palvrepo.deleteById(palvId);
         return "redirect:/palvelutLista";
     }
-    
+
 }
