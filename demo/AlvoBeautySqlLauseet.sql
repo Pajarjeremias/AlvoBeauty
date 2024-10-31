@@ -1,9 +1,6 @@
-CREATE TABLE alvoBeauty
-(
-    aBId BIGSERIAL NOT NULL PRIMARY KEY
-    
-);
-INSERT INTO alvoBeauty DEFAULT VALUES;
+CREATE TABLE alvo_beauty
+( aBId BIGSERIAL NOT NULL PRIMARY KEY);
+INSERT INTO alvo_beauty DEFAULT VALUES;
 
 
 CREATE TABLE kayttaja (
@@ -32,7 +29,7 @@ CREATE TABLE tyontekijat (
     tyosuhdealku int,
     lisatiedot VARCHAR(255) NOT NULL,
     aBId BIGINT,
-    FOREIGN KEY(aBId) REFERENCES alvoBeauty(aBId) ON DELETE CASCADE
+    FOREIGN KEY(aBId) REFERENCES alvo_beauty(aBId) ON DELETE CASCADE
 );
 INSERT INTO tyontekijat (nimi, role, puhnumero, email, osoite, tyosuhdealku, lisatiedot, aBId)
 VALUES ('erica', 'toimitusjohtaja', '0402465768', 'erica.alvo@kolumbus.fi', 'vanhatie 3', 1995, 'eipä tässä mittään', 1),
@@ -45,13 +42,13 @@ VALUES ('erica', 'toimitusjohtaja', '0402465768', 'erica.alvo@kolumbus.fi', 'van
 ('leonardo','toimitusjohtaja', '326253324', 'leonardo.leonardo@leo.fi', 'leon parkkihalli 100', 2020 , 'izkä izkä', 1);
 
 CREATE TABLE palvelut (
-    palvId BIGSERIAL PRIMARY KEY,
+    palv_id BIGSERIAL PRIMARY KEY,
     hinta DECIMAL(10, 2),
     nimi VARCHAR(50) NOT NULL,
     kuvaus VARCHAR(255),
     aBId BIGINT,
     tTId BIGINT,
-    FOREIGN KEY (aBId) REFERENCES alvoBeauty(aBId) ON DELETE CASCADE,
+    FOREIGN KEY (aBId) REFERENCES alvo_beauty(aBId) ON DELETE CASCADE,
     FOREIGN KEY (tTId) REFERENCES tyontekijat(tTId) ON DELETE SET NULL
 );
 INSERT INTO palvelut (hinta, nimi, kuvaus, aBId, tTId)

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -82,8 +81,7 @@ public class AlvoBeautyController {
     }
 
     @RequestMapping(value = "/tallennatyontekija", method = RequestMethod.POST)
-    public String tallennaTyontekija(@Valid @ModelAttribute("tyontekija") Tyontekijat tyontekija,
-            BindingResult bindingResult, Model model) {
+    public String tallennaTyontekija(@Valid @ModelAttribute("tyontekija") Tyontekijat tyontekija, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("tyontekija", tyontekija);
             return "/lisaaTyontekija";
@@ -94,8 +92,7 @@ public class AlvoBeautyController {
     }
 
     @RequestMapping(value = "/tallennapalvelu", method = RequestMethod.POST)
-    public String tallennaPalvelu(@Valid @ModelAttribute("palvelu") Palvelut palvelu, BindingResult bindingResult,
-            Model model) {
+    public String tallennaPalvelu(@Valid @ModelAttribute("palvelu") Palvelut palvelu, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("palvelu", palvelu);
             model.addAttribute("tyontekijat", tyorepo.findAll());
@@ -112,24 +109,23 @@ public class AlvoBeautyController {
         return "redirect:/kayttajaLista";
     }
 
-    @GetMapping("/editoityontekija/{tTId}")
+    @GetMapping("/editoiTyontekija/{tTId}")
     @PreAuthorize("hasRole('toimitusjohtaja')")
     public String editoiTyontekija(@PathVariable("tTId") Long tTId, Model model) {
         model.addAttribute("editoiTyontekija", tyorepo.findById(tTId));
-        return "editoityontekija";
+        return "editoiTyontekija";
     }
 
-    @GetMapping("/editoipalvelu/{palvId}")
+    @GetMapping("/editoiPalvelu/{palv_id}")
     @PreAuthorize("hasRole('toimitusjohtaja')")
-    public String editoiPalvelu(@PathVariable("palvId") Long palvId, Model model) {
-        model.addAttribute("editoiPalvelu", palvrepo.findById(palvId));
+    public String editoiPalvelu(@PathVariable("palv_id") Long palv_id, Model model) {
+        model.addAttribute("editoiPalvelu", palvrepo.findById(palv_id));
         model.addAttribute("tyontekijat", tyorepo.findAll());
-        return "editoipalvelu";
+        return "editoiPalvelu";
     }
 
     @RequestMapping(value = "/tallennaeditoitutyontekija", method = RequestMethod.POST)
-    public String tallennaEditoituTyontekija(@Valid @ModelAttribute("editoiTyontekija") Tyontekijat tyontekija,
-            BindingResult bindingResult, Model model) {
+    public String tallennaEditoituTyontekija(@Valid @ModelAttribute("editoiTyontekija") Tyontekijat tyontekija, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("editoiTyontekija", tyontekija);
             return "editoiTyontekija";
@@ -139,8 +135,7 @@ public class AlvoBeautyController {
     }
 
     @RequestMapping(value = "/tallennaeditoitupalvelu", method = RequestMethod.POST)
-    public String tallennaEditoituPalvelu(@Valid @ModelAttribute("editoiPalvelu") Palvelut palvelu,
-            BindingResult bindingResult, Model model) {
+    public String tallennaEditoituPalvelu(@Valid @ModelAttribute("editoiPalvelu") Palvelut palvelu, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("editoiPalvelu", palvelu);
             model.addAttribute("tyontekijat", tyorepo.findAll());
@@ -159,10 +154,10 @@ public class AlvoBeautyController {
     }
 
     @PreAuthorize("hasRole('toimitusjohtaja')")
-    @RequestMapping(value = "/poistapalvelu/{palvId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/poistapalvelu/{palv_id}", method = RequestMethod.GET)
 
-    public String poistaPalvelu(@PathVariable("palvId") Long palvId) {
-        palvrepo.deleteById(palvId);
+    public String poistaPalvelu(@PathVariable("palv_id") Long palv_id) {
+        palvrepo.deleteById(palv_id);
         return "redirect:/palvelutLista";
     }
 

@@ -63,8 +63,8 @@
     		<td th:text="${palvelu.nimi}"></td>
             <td th:text="${palvelu.kuvaus}"></td> 
             <td th:text="${palvelu.tyontekija?.nimi}"></td>
-            <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/poistapalvelu/{palvId}(palvId=${palvelu.palvId})}" class="btn btn-xs btn-danger ">Poista </a></td>
-		    <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/editoipalvelu/{palvId}(palvId=${palvelu.palvId})}"class="btn btn-xs btn-info ">Muunna </a></td>
+            <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/poistapalvelu/{palv_id}(palv_id=${palvelu.palv_id})}" class="btn btn-xs btn-danger ">Poista </a></td>
+		    <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/editoiPalvelu/{palv_id}(palv_id=${palvelu.palv_id})}"class="btn btn-xs btn-info ">Muunna </a></td>
     	</tr>
      </table>   
      <div sec:authorize="hasRole('toimitusjohtaja')">	

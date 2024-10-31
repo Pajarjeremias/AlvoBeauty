@@ -72,7 +72,7 @@ public class RESTController {
 
     @PutMapping("/muokkaapalvelut/{palvId}")
     Palvelut editPalvelut(@RequestBody Palvelut editioituPalvelu, @PathVariable Long palvId){
-    editioituPalvelu.setPalvId(palvId);
+    editioituPalvelu.setPalv_id(palvId);
     return palvrepo.save(editioituPalvelu);
     }
     @PutMapping("/muokkaatyontekijat/{tTId}")

@@ -70,7 +70,7 @@
             <td th:text="${tyontekija.tyosuhdealku}"></td> 
             <td th:text="${tyontekija.lisatiedot}"></td> 
             <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/poistatyontekija/{tTId}(tTId=${tyontekija.tTId})}" class="btn btn-xs btn-danger ">Poista </a></td>
-		    <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/editoityontekija/{tTId}(tTId=${tyontekija.tTId})}"class="btn btn-xs btn-info ">Muunna </a></td>
+		    <td sec:authorize="hasRole('toimitusjohtaja')"><a th:href="@{/editoiTyontekija/{tTId}(tTId=${tyontekija.tTId})}"class="btn btn-xs btn-info ">Muunna </a></td>
     	</tr>
      </table>   
      <div sec:authorize="hasRole('toimitusjohtaja')">	

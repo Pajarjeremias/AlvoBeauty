@@ -11,8 +11,8 @@ import jakarta.validation.constraints.NotNull;
 public class Palvelut {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "palvId", nullable=false)
-    private Long palvId;
+    @Column(name= "palv_id", nullable=false)
+    private Long palv_id;
 
     @ManyToOne
     @JoinColumn(name="aBId")
@@ -45,12 +45,12 @@ public Palvelut(Tyontekijat tyontekija, BigDecimal hinta, String nimi, String ku
     this.kuvaus = kuvaus;
 }
 
-public Long getPalvId() {
-    return palvId;
+public Long getPalv_id() {
+    return palv_id;
 }
 
-public void setPalvId(Long palvId) {
-    this.palvId = palvId;
+public void setPalv_id(Long palv_id) {
+    this.palv_id = palv_id;
 }
 
 public AlvoBeauty getAlvoBeauty() {

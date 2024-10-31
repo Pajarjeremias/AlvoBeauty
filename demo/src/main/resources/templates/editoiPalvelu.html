@@ -46,7 +46,7 @@
 	<div class="container mt-4">
 		<h2>Palveluiden editointi</h2>
 	<form th:object="${editoiPalvelu}" th:action="@{/tallennaeditoitupalvelu}" action="#" method="post">
-		  	<input type="hidden" th:field="*{palvId}" />
+		  	<input type="hidden" th:field="*{palv_id}" />
 		  	<div class="hinta">
 		  	    <label>Hinta: </label>
 			    <input type="text" th:field="*{hinta}" />

@@ -2,7 +2,7 @@ package projekti.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.boot.CommandLineRunner;
+/*import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.context.annotation.Bean;
 
@@ -15,13 +15,13 @@ import projekti.demo.domain.Palvelut;
 import projekti.demo.domain.PalvelutRepositorio;
 
 import projekti.demo.domain.Kayttaja;
-import projekti.demo.domain.KayttajaRepositorio;
+import projekti.demo.domain.KayttajaRepositorio;*/
 @SpringBootApplication
 public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-@Bean
+/*@Bean
 public CommandLineRunner alvoBeautyData(AlvoBeautyRepositorio abRepo, TyontekijatRepositorio tyoRepo, PalvelutRepositorio palRepo,
 KayttajaRepositorio kaytRepo ){
 	return(args) -> {
@@ -72,5 +72,5 @@ KayttajaRepositorio kaytRepo ){
 		kaytRepo.save(kayttaja6);
 	
 		};
-}
+}*/
 }
