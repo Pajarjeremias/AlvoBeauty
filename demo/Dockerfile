@@ -4,7 +4,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
-COPY ./src ./src
+COPY src /opt/app/src
 RUN ./mvnw clean install -DskipTests
 RUN find ./target -type f -name '*.jar' -exec cp {} /opt/app/app.jar \; -quit
 
